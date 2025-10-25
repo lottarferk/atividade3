@@ -64,31 +64,14 @@
                 <p>&#128231;<strong>E-mail:</strong> amigos@daonca.org</p>
             </section>
         </main>
-
-        <script> // Esconde o menu com base no tamanho da tela
-            function clickMenu() {
-                const nav = document.querySelector('nav');
-                if (nav.style.display == 'block') {
-                    nav.style.display = 'none';
-                } else {
-                    nav.style.display = 'block';
-                }
-            }
-        </script>
-        <script>
-            function mudouTamanho() {
-                const nav = document.querySelector('nav');
-                if (window.innerWidth > 600) {
-                    nav.style.display = 'block';
-                } else {
-                    nav.style.display = 'none';
-                }
-            }
-        </script>
         
         <footer>
             <!-- Direitos reservados -->
             <p>&copy; 2025 Amigos da Onça. Todos os direitos reservados.</p>
         </footer>
+
+        <!-- Linka o script js -->
+        <script src="script.js"></script>
+
     </body>
 </html>
