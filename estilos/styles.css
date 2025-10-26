@@ -285,4 +285,6 @@ font-size: large;
 /* Estiliza elementos do DOM */
 button {
   cursor: pointer;
+  background-color: #ffffff;
+  border: #ffffff;
 }
