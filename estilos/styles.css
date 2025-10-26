@@ -281,3 +281,8 @@ font-size: large;
     height: auto;
     margin-bottom: 10px;
 }
+
+/* Estiliza elementos do DOM */
+button {
+  cursor: pointer;
+}

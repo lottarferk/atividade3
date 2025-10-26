@@ -15,33 +15,48 @@ function mudouTamanho() {
         nav.style.display = 'none';
     }
 }
-// Máscara para CPF
-document.getElementById('cpf').addEventListener('input', function (e)
-    {
-    let value = e.target.value.replace(/\D/g, '');
-    if (value.length > 11) value = value.slice(0, 11);
-    value = value.replace(/(\d{3})(\d)/, '$1.$2');
-    value = value.replace(/(\d{3})(\d)/, '$1.$2');
-    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-    e.target.value = value;
-});
+// Cria botões "Saiba Mais" nos cards
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.card-container .card');
 
-// Máscara para Telefone
-document.getElementById('telefone').addEventListener('input', function (e) {
-    let value = e.target.value.replace(/\D/g, '');
-    if (value.length > 11) value = value.slice(0, 11);
-    if (value.length <= 10) {
-        value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
-    } else {
-        value = value.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+  cards.forEach(card => {
+    // Adiciona o botão se ele ainda não existir
+    let button = card.querySelector('button');
+    if (!button) {
+      button = document.createElement('button');
+      button.textContent = 'Saiba Mais';
+      card.appendChild(button);
     }
-    e.target.value = value;
-});
 
-// Máscara para CEP
-document.getElementById('cep').addEventListener('input', function (e) {
-    let value = e.target.value.replace(/\D/g, '');
-    if (value.length > 8) value = value.slice(0, 8);
-    value = value.replace(/(\d{5})(\d{0,3})/, '$1-$2');
-    e.target.value = value;
+
+    const paragraphs = card.querySelectorAll('p');
+    paragraphs.forEach(p => {
+      p.style.transition = 'max-height 0.5s ease-in-out';
+      p.style.overflow = 'hidden';
+      // Define a altura inicial com base no estado atual (visível ou oculto)
+      if (p.style.display === 'block') {
+        p.style.maxHeight = p.scrollHeight + 'px';
+      } else {
+        p.style.maxHeight = '0';
+        p.style.display = 'none'; // Garante que esteja oculto inicialmente
+      }
+    });
+
+    // Adiciona o event listener ao botão
+    button.addEventListener('click', () => {
+      paragraphs.forEach(p => {
+        if (p.style.maxHeight === '0px' || p.style.maxHeight === '') {
+          p.style.display = 'block'; // Exibe o elemento antes de animar
+          p.style.maxHeight = p.scrollHeight + 'px';
+        } else {
+          p.style.maxHeight = '0';
+          // Oculta o elemento completamente após a transição de recolher
+          p.addEventListener('transitionend', function handler() {
+            p.style.display = 'none';
+            p.removeEventListener('transitionend', handler);
+          });
+        }
+      });
+    });
+  });
 });
