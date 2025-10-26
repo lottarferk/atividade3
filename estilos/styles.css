@@ -271,7 +271,6 @@ font-size: large;
 
 .card:hover {
     transform: scale(1.05);
-    cursor: pointer;
     transition: transform 0.2s ease;
 }
 
@@ -287,4 +286,5 @@ button {
   cursor: pointer;
   background-color: #ffffff;
   border: #ffffff;
+  margin-top: 8px;
 }
